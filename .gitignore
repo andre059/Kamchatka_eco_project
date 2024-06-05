@@ -136,3 +136,4 @@ examples/foo.py
 credentials.json
 examples
 data/*
+*cache*
