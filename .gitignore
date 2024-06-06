@@ -137,3 +137,6 @@ credentials.json
 examples
 data/*
 *cache*
+/env
+/venv
+/.env
