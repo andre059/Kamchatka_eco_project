@@ -22,7 +22,7 @@ load_dotenv(BASE_DIR / '.env')
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'SECRET_KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'kamchatka_eco_project',
         'USER': 'postgres',
-        'PASSWORD': os.getenv('пароль от PgAdmin4')
+        'PASSWORD': 'пароль от PgAdmin4'
     }
 }
 
@@ -138,7 +138,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = os.getenv('твоя почта gmail или email')
-EMAIL_HOST_PASSWORD = os.getenv('тут пароль приложения, его нужно сделать в почте, лучше gmail')
+EMAIL_HOST_USER = 'твоя почта gmail или email'
+EMAIL_HOST_PASSWORD = 'тут пароль приложения, его нужно сделать в почте, лучше gmail'
 EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = os.getenv('твоя почта gmail или email')
+DEFAULT_FROM_EMAIL = 'твоя почта gmail или email'
