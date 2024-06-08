@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('NAME'),
-        'USER': os.getenv('USER'),
-        'PASSWORD': os.getenv('PASSWORD')
+        'NAME': 'kamchatka_eco_project',
+        'USER': 'postgres',
+        'PASSWORD': os.getenv('пароль от PgAdmin4')
     }
 }
 
@@ -136,9 +136,9 @@ LOGIN_URL = '/users/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = os.getenv('твоя почта gmail или email')
+EMAIL_HOST_PASSWORD = os.getenv('тут пароль приложения, его нужно сделать в почте, лучше gmail')
 EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+DEFAULT_FROM_EMAIL = os.getenv('твоя почта gmail или email')

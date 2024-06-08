@@ -5,23 +5,25 @@ from users.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """Сериализатор для пользователя"""
+
     class Meta:
         model = User
         fields = '__all__'
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
+    """Сериализатор для регистрации пользователя"""
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'password2']
+        fields = ['username', 'email', 'password']
         extra_kwargs = {
             'password': {'write_only': True}
         }
 
         def create(self, validated_data):
-            password1 = validated_data.pop('password1')
+            password1 = validated_data.pop('password')
             password2 = validated_data.pop('password2')
 
             if password1 != password2:
@@ -34,6 +36,8 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class ChangePasswordSerializer(serializers.Serializer):
+    """Сериализатор для изменения пароля"""
+
     old_password = serializers.CharField(required=True)
     new_password1 = serializers.CharField(required=True)
     new_password2 = serializers.CharField(required=True)
