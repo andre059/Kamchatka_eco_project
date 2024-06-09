@@ -1,29 +1,28 @@
+import random
+import logging
 from django.core.mail import send_mail
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
+
+
+logger = logging.getLogger(__name__)
 
 
 def send_confirmation_email(user):
     """Отправка письма с подтверждением регистрации"""
 
-    subject = 'Confirm your registration'
-    message = (f'Hi {user.username}, \n Please confirm your registration by clicking this link: \n '
-               f'{generate_confirmation_link(user)}')
-    from_email = 'your_email@gmail.com'
-    send_mail(subject, message, from_email, [user.email])
-
-
-def generate_token(user):
-    """Генерация токена для подтверждения регистрации"""
-
-    return PasswordResetTokenGenerator().make_token(user)
-
-
-def generate_confirmation_link(user):
-    """Генерация ссылки для подтверждения регистрации"""
-
-    uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
-    token = generate_token(user)
-    link = f'http://localhost:8000/confirm/{uidb64}/{token}'
-    return link
+    try:
+        code = random.randint(100000, 999999)  # Генерация 6-значного кода
+        user.confirmation_code = code  # Сохраняем код в модели пользователя
+        user.save()
+        subject = 'Код подтверждения регистрации'
+        message = f'Ваш код подтверждения: {code}'
+        from_email = 'andrey01590@gmail.com'
+        send_mail(subject, message, from_email, [user.email])
+        # email = EmailMessage(
+        #     subject, message, to=[user.email],
+        #     #  Вместо  from_email  используйте  'noreply@yourdomain.com'
+        #     #  или  'noreply@example.com'  (если  у  вас  нет  своего  домена)
+        #     from_email='andrey01590@gmail.com',
+        # )
+        # email.send()
+    except Exception as e:
+        logger.error(f"Ошибка при отправке письма: {e}")

@@ -18,6 +18,7 @@ class User(AbstractUser):
 
     username = models.CharField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
+    confirmation_code = models.IntegerField(verbose_name="код подтверждения", **NULLABLE)
 
     def __str__(self):
         return self.email
