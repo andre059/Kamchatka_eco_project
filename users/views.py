@@ -29,7 +29,7 @@ class ConfirmCodeView(APIView):
             user = User.objects.get(email=request.data.get('email'))
         except User.DoesNotExist:
             return Response({'error': 'Пользователь не найден'}, status=status.HTTP_404_NOT_FOUND)
-        if user.confirmation_code == request.data.get('code'):
+        if user.confirmation_code == int(request.data.get('code')):
             user.is_active = True
             user.save()
             serializer = UserSerializer(user)
