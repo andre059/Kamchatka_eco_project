@@ -3,6 +3,23 @@ from django.db import models
 from users.models import NULLABLE, User
 
 
+class Park(models.Model):
+    """Парк"""
+
+    title = models.CharField(max_length=100, verbose_name="Название")
+    description = models.TextField(verbose_name="Описание")
+    image = models.ImageField(upload_to='parks/', **NULLABLE, verbose_name="Изображение")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="обновлено")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Парк"
+        verbose_name_plural = "Парки"
+
+
 class Trail(models.Model):
     """Тропа"""
 
@@ -11,6 +28,8 @@ class Trail(models.Model):
     image = models.ImageField(upload_to='trails/', **NULLABLE, verbose_name="Изображение")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="обновлено")
+
+    park = models.ForeignKey(Park, on_delete=models.CASCADE, verbose_name="Парк")
 
     def __str__(self):
         return self.name

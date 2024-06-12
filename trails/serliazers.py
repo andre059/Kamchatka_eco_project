@@ -1,6 +1,12 @@
 from rest_framework import serializers
 
-from trails.models import Trail, Rule, Notification
+from trails.models import Trail, Rule, Notification, Park
+
+
+class ParkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Park
+        fields = '__all__'
 
 
 class TrailSerializer(serializers.ModelSerializer):
@@ -15,7 +21,14 @@ class RuleSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class NotificationSerializer(serializers.ModelSerializer):
+# class NotificationSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Notification
+#         fields = '__all__'
+
+
+class ClusterInfoNalichevoSerializer(serializers.ModelSerializer):
+
     class Meta:
-        model = Notification
+        model = Park
         fields = '__all__'

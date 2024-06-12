@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from users.email_utils import send_confirmation_email
+from users.utils import send_confirmation_email
 from users.models import User
 
 
