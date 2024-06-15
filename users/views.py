@@ -1,5 +1,4 @@
-from rest_framework import status, generics
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -47,15 +46,18 @@ class UserView(APIView):
         return Response(serializer.data)
 
 
-class UserCreateAPIView(generics.CreateAPIView):
-    """создание пользователя"""
+class UserUpdateAPIView(APIView):
+    """Изменение данных пользователя по ID"""
 
-    serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
+    def put(self, request, pk):
+        # Получаем пользователя по ID
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            return Response({'error': 'Пользователь не найден'}, status=status.HTTP_404_NOT_FOUND)
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+        # Сохраняем изменения
+        serializer = UserSerializer(user, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
