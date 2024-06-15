@@ -23,7 +23,7 @@ class Park(models.Model):
 class Trail(models.Model):
     """Тропа"""
 
-    name = models.CharField(max_length=100, verbose_name="Название")
+    name = models.CharField(max_length=200, verbose_name="Название")
     description = models.TextField(verbose_name="Описание")
     image = models.ImageField(upload_to='trails/', **NULLABLE, verbose_name="Изображение")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
@@ -45,6 +45,13 @@ class Rule(models.Model):
     trail = models.ForeignKey(Trail, on_delete=models.CASCADE)
     rule_text = models.TextField(verbose_name="Правило")
 
+    def __str__(self):
+        return self.rule_text
+
+    class Meta:
+        verbose_name = "Правило"
+        verbose_name_plural = "Правила"
+
 
 class Notification(models.Model):
     """Уведомления"""
@@ -55,3 +62,10 @@ class Notification(models.Model):
                                                      ('event', 'Event')], verbose_name='тип')
     message = models.TextField(verbose_name="Сообщение")
     date_created = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+
+    def __str__(self):
+        return self.message
+
+    class Meta:
+        verbose_name = "Уведомление"
+        verbose_name_plural = "Уведомления"
