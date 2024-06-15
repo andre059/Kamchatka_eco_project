@@ -21,10 +21,10 @@ class RuleSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# class NotificationSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Notification
-#         fields = '__all__'
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = '__all__'
 
 
 class ClusterInfoNalichevoSerializer(serializers.ModelSerializer):
