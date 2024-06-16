@@ -4,13 +4,13 @@
 
 в проекте реализованно:
 
-- Регистрация пользователя через почту (отправляется 6-ти значный код на почту) (POST) (localhost:8000/users/register/)
-- Подтверждение регистрации (вводим 6-ти значный код) (POST) (localhost:8000/users/confirm_code/)
-- Изменение данных пользователя по ID (личный кабинет) (PUT) (localhost:8000/users/user/update/ID/)
-- Получение списка пользователей (GET) (localhost:8000/users/user/)
-- Получение информации о парке Налычево (GET) (localhost:8000/trails/cluster_info_nalichevo/)
-- Получение информации о маршрутах парка Налычево (GET) (localhost:8000/trails/information_nalychevo/)
-- Вывод списка парков (GET) (localhost:8000/trails/parks/)
+- Регистрация пользователя через почту (отправляется 6-ти значный код на почту)   (POST)   (localhost:8000/users/register/)
+- Подтверждение регистрации (вводим 6-ти значный код)   (POST)   (localhost:8000/users/confirm_code/)
+- Изменение данных пользователя по ID (личный кабинет)   (PUT)   (localhost:8000/users/user/update/ID/)
+- Получение списка пользователей   (GET)   (localhost:8000/users/user/)
+- Получение информации о парке Налычево   (GET)   (localhost:8000/trails/cluster_info_nalichevo/)
+- Получение информации о маршрутах парка Налычево   (GET)   (localhost:8000/trails/information_nalychevo/)
+- Вывод списка парков   (GET)   (localhost:8000/trails/parks/)
 
 ### *Установка*
 
